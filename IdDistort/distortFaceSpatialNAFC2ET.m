@@ -1,10 +1,10 @@
-% glassCohThreshNAFC
-% Program to measure the signal:noise ratio for detection of glass patterns
-% N dots randomly positioned on screen
-% Target element pairs horizontal or vertical
-% Noise element pairs random orienttions
-% Staircase adjusts the signal:noise ratio for 79% orientation identification
-% 2019  pjb  adapted it from Psych Toolbox demo
+% distortFaceSpatialNAFC2ET
+% Face identification under spatial distortion (Cui & Bex, 2025, PLOS ONE).
+% A target face is shown on the left; observers click which of nAFC distorted
+% faces is the same identity. Distortions are band-pass filtered pixel shifts
+% at each distortion frequency (c/image); amplitude follows an adaptive staircase.
+% Set Face Orientation to 0 (upright) or 180 (inverted) in the start-up dialog.
+% Adapted from a Psychtoolbox-based glass-pattern threshold script by P. Bex (2019).
 
 clear all;
 
@@ -52,6 +52,7 @@ try
     %     pathToImageFolders='C:\Users\pbex\Google Drive\IASLab Set_FOR DISTRIBUTION\IASLab Face Set 400X600 by identity\';
     %C:\Users\bexlab\Dropbox\Bliss Cui\myExperiments\faceDistortion
     % pathToImageFolders='C:\Users\bliss\Documents\myExperiments\\IASLab Set_FOR DISTRIBUTION\IASLab Face Set 400X600 by identity\';
+    % EDIT THIS: path to your local copy of the IASLab Face Set (400x600, one folder per identity)
    pathToImageFolders='C:\Users\bexlab\Dropbox\Bliss Cui\myExperiments\IASLab Set_FOR DISTRIBUTION\IASLab Face Set 400X600 by identity\';
         
     sIDList = dir(pathToImageFolders); % list of folders for each subject
@@ -163,7 +164,7 @@ try
             if ~isequal(size(myFace(faceNum).im), srcImSize)
                 faceIm2=zeros(srcImSize);
                 for rgbIndex=1:3
-                    faceIm2(:,:,rgbIndex)=imresize(targFaceIm(:,:,rgbIndex), [srcImSize(1) srcImSize(2)]);
+                    faceIm2(:,:,rgbIndex)=imresize(myFace(faceNum).im(:,:,rgbIndex), [srcImSize(1) srcImSize(2)]);
                 end
                 myFace(faceNum).im=uint8(faceIm2);
             end
@@ -179,9 +180,9 @@ try
                 if ~isequal(size(targFaceIm), srcImSize)
                     faceIm2=zeros(srcImSize);
                     for rgbIndex=1:3
-                        faceIm2=imresize(targFaceIm(:,:,rgbIndex), [srcImSize(1) srcImSize(2)]); %Force images to all be the same size
+                        faceIm2(:,:,rgbIndex)=imresize(targFaceIm(:,:,rgbIndex), [srcImSize(1) srcImSize(2)]); %Force images to all be the same size
                     end
-                    targFaceIm=faceIm2;
+                    targFaceIm=uint8(faceIm2);
                 end
             end
         end

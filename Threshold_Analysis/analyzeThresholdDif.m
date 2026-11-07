@@ -1,3 +1,8 @@
+% Data are loaded relative to this script's location, so it can be run from any folder.
+scriptDir = fileparts(mfilename('fullpath'));
+uprightDir = fullfile(scriptDir, '..', 'IdDistort', 'Upright_Data');
+invertDir  = fullfile(scriptDir, '..', 'IdDistort', 'Invert_Data');
+
 %% Upright ID
 sIDUpright={'P1_UP_'; 'P2_UP_'; 'P3_UP_'; 'P4_UP_'; 'P5_UP_'; 'P6_UP_'; 'P7_UP_'; 'P8_UP_'}; 
 
@@ -7,7 +12,7 @@ nLambdas=6;
 threshDataUP=zeros(nSubjects, nLambdas);
 
 for sNum=1:nSubjects
-    myfile=[sIDUpright{sNum} 'FaceDistort.mat'];
+    myfile = fullfile(uprightDir, [sIDUpright{sNum} 'FaceDistort.mat']);
     load(myfile);
     for lambdaNum=1:nLambdas
         threshDataUP(sNum, lambdaNum)=trialRecord(lambdaNum).fitObj.thresh;
@@ -25,7 +30,7 @@ nLambdas=6;
 threshDataINV=zeros(nSubjects, nLambdas);
 
 for sNum=1:nSubjects
-    myfile=[sIDInverted{sNum} 'FaceDistort.mat'];
+    myfile = fullfile(invertDir, [sIDInverted{sNum} 'FaceDistort.mat']);
     load(myfile);
     for lambdaNum=1:nLambdas
         threshDataINV(sNum, lambdaNum)=trialRecord(lambdaNum).fitObj.thresh;
