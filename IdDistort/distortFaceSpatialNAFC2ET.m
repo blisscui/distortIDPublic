@@ -7,6 +7,7 @@
 % Adapted from a Psychtoolbox-based glass-pattern threshold script by P. Bex (2019).
 
 clear all;
+addpath(fullfile(fileparts(mfilename('fullpath')), 'helpers')); % helper functions (filters, psychometric fits, eye tracker)
 
 whichScreen=max(Screen('Screens')); % use highest display # for stimuli
 meanLum=127;
