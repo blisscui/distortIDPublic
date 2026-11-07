@@ -1,7 +1,7 @@
 % Data are loaded relative to this script's location, so it can be run from any folder.
 scriptDir = fileparts(mfilename('fullpath'));
-uprightDir = fullfile(scriptDir, '..', 'IdDistort', 'Upright_Data');
-invertDir  = fullfile(scriptDir, '..', 'IdDistort', 'Invert_Data');
+uprightDir = fullfile(scriptDir, '..', 'data', 'upright');
+invertDir  = fullfile(scriptDir, '..', 'data', 'inverted');
 
 %% Upright ID
 sIDUpright={'P1_UP_'; 'P2_UP_'; 'P3_UP_'; 'P4_UP_'; 'P5_UP_'; 'P6_UP_'; 'P7_UP_'; 'P8_UP_'}; 

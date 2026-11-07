@@ -10,20 +10,20 @@ Eight observers matched a target face to one of four distorted faces. The distor
 
 | Folder | What's inside |
 |---|---|
-| `IdDistort/` | `distortFaceSpatialNAFC2ET.m`, the experiment script |
-| `IdDistort/Upright_Data/`, `IdDistort/Invert_Data/` | One `.mat` file per observer (P1–P8) per orientation |
-| `IdDistort/helpers/` | Helper functions used by the experiment script |
-| `Threshold_Analysis/` | Analysis scripts (thresholds, ANOVA, figures) |
+| `data/upright/`, `data/inverted/` | One `.mat` file per observer (P1–P8) per face orientation |
+| `experiment/` | `distortFaceSpatialNAFC2ET.m`, the experiment script |
+| `experiment/helpers/` | Helper functions used by the experiment script |
+| `analysis/` | Analysis scripts (thresholds, ANOVA, figures) |
 
 Each `.mat` file contains `trialRecord`, with one entry per distortion frequency. It holds the trial-by-trial amplitudes, responses and response times, and the fitted threshold (`fitObj.thresh`).
 
 ## Reproducing the analysis
 
-You need MATLAB with the Statistics and Curve Fitting toolboxes. Run any script in `Threshold_Analysis/`. The scripts load the data automatically and use the thresholds saved in the data files.
+You need MATLAB with the Statistics and Curve Fitting toolboxes. Run any script in `analysis/`. The scripts load the data automatically and use the thresholds saved in the data files.
 
 ## Running the experiment
 
-You need MATLAB and [Psychtoolbox-3](http://psychtoolbox.org/). The face images come from the [IASLab Face Set](https://affective-science.org/face-set.shtml), which is available to academic researchers on request and is not included here. Set `pathToImageFolders` in the script to your copy. Helper functions from the Bex lab toolbox (filters, psychometric-function fitting, GazePoint eye tracker set-up) are in `IdDistort/helpers/` and load automatically.
+You need MATLAB and [Psychtoolbox-3](http://psychtoolbox.org/). The face images come from the [IASLab Face Set](https://affective-science.org/face-set.shtml), which is available to academic researchers on request and is not included here. Set `pathToImageFolders` in the script to your copy. Helper functions from the Bex lab toolbox (filters, psychometric-function fitting, GazePoint eye tracker set-up) are in `experiment/helpers/` and load automatically.
 
 ## License
 
